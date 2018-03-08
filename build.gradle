@@ -1,0 +1,56 @@
+group 'mfi.mfi.misterfifi'
+version '1.5'
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
+    }
+}
+
+apply plugin: "org.sonarqube"
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "Up2Box Gradle Version"
+        property "sonar.projectKey", "GUp2Box"
+        property "sonar.projectVersion", version
+        property "sonar.host.url", "https://quality.misterfifi.eu"
+        property "sonar.login", "5a02ecbe6eabde2d710edcbb59b223c5b0277a71"
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.box:box-java-sdk:2.14.1'
+    compile 'com.beust:jcommander:1.72'
+    compile 'com.github.seratch:jslack:1.0.26'
+    compile 'org.apache.commons:commons-configuration2:2.2'
+    compile 'junit:junit:4.12'
+    compile 'org.slf4j:slf4j-simple:1.7.25'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'org.apache.logging.log4j:log4j-api:2.10.0'
+    compile 'org.apache.logging.log4j:log4j-core:2.10.0'
+    compile 'commons-beanutils:commons-beanutils:1.9.3'
+}
+
+jar{
+    manifest{
+        attributes 'Main-Class': 'mfi.misterfifi.Main'
+    }
+    doFirst {
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
