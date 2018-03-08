@@ -26,8 +26,6 @@ sonarqube {
         property "sonar.projectName", "Up2Box Gradle Version"
         property "sonar.projectKey", "GUp2Box"
         property "sonar.projectVersion", version
-        property "sonar.host.url", "https://quality.misterfifi.eu"
-        property "sonar.login", "5a02ecbe6eabde2d710edcbb59b223c5b0277a71"
     }
 }
 
