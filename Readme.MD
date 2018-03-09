@@ -36,8 +36,11 @@ When the file will be uploaded, you can share it with one or many box users. The
 If you want to receive Slack notifications at the end of the process, you can configure the "config.properties" file with the [webhook](https://api.slack.com/incoming-webhooks) information previously created.
 
 > slack.isEnabled = true 
+> 
 > slack.WebHook = https://hooks.slack.com/services/secret_token 
+> 
 > slack.Channel = bot
+> 
 > slack.UserName = up2box
 
 # Bouncy Castle Configuration
